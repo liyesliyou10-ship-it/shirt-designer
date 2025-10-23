@@ -1,10 +1,10 @@
-from fastapi import FastAPI, Form
+  from fastapi import FastAPI, Form
 from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
 @app.get("/", response_class=HTMLResponse)
-def home():
+async def home():
     return """
     <html>
         <head>
@@ -56,7 +56,7 @@ def home():
             <p>Customize your shirt and order it anywhere in Algeria 🇩🇿</p>
 
             <div>
-                <button onclick="alert('Start Designing coming soon!')">Start Design</button>
+                <button onclick="alert('Start Designing — coming soon!')">Start Design</button>
                 <button onclick="alert('Contact us at shirt-designer@wasmer.app')">Contact Us</button>
             </div>
 
@@ -80,7 +80,7 @@ def home():
     """
 
 @app.post("/order", response_class=HTMLResponse)
-def order(name: str = Form(...), phone: str = Form(...), wilaya: str = Form(...)):
+async def order(name: str = Form(...), phone: str = Form(...), wilaya: str = Form(...)):
     return f"""
     <html>
         <head><title>Order Confirmed</title></head>
@@ -93,4 +93,5 @@ def order(name: str = Form(...), phone: str = Form(...), wilaya: str = Form(...)
         </body>
     </html>
     """
+
 
